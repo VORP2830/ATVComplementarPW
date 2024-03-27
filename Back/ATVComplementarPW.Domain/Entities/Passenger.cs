@@ -2,5 +2,8 @@
 
 public class Passenger : Person
 {
-    protected Passenger() { }
+    protected Passenger()
+    {
+        Active = true;
+    }
 }

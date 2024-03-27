@@ -11,7 +11,17 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
-    //public IUserRepository UserRepository => new UserRepository(_context);
+    public IUserRepository UserRepository => new UserRepository(_context);
+
+    public IPassengerRepository PassengerRepository => new PassengerRepository(_context);
+
+    public IDriverRepository DriverRepository => new DriverRepository(_context);
+
+    public IVehicleRepository VehicleRepository => new VehicleRepository(_context);
+
+    public ITransportRepository TransportRepository => new TransportRepository(_context);
+
+    public IReportsRepository ReportsRepository => new ReportsRepository(_context);
 
     public async Task<bool> SaveChangesAsync()
     {

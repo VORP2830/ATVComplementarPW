@@ -11,5 +11,8 @@ public class Address : BaseEntity
     public string City { get; set; }
     public int UserId { get; set; }
     public Person User { get; set; }
-    protected Address() { }
+    protected Address()
+    {
+        Active = true;
+    }
 }

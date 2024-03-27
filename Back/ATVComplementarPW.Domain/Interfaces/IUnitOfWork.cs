@@ -2,6 +2,11 @@
 
 public interface IUnitOfWork
 {
-    //IUserRepository UserRepository { get; }
+    IUserRepository UserRepository { get; }
+    IPassengerRepository PassengerRepository { get; }
+    IDriverRepository DriverRepository { get; }
+    IVehicleRepository VehicleRepository { get; }
+    ITransportRepository TransportRepository { get; }
+    IReportsRepository ReportsRepository { get; }
     Task<bool> SaveChangesAsync();
 }

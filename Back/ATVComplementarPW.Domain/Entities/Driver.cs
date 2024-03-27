@@ -2,5 +2,8 @@
 
 public class Driver : Person
 {
-    protected Driver() { }
+    protected Driver()
+    {
+        Active = true;
+    }
 }

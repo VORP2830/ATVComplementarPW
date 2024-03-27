@@ -7,5 +7,8 @@ public abstract class Person : BaseEntity
     public DateOnly DateOfBirth { get; set; }
     public string CPF { get; set; }
     public Address Address { get; set; }
-    protected Person() { }
+    protected Person()
+    {
+        Active = true;
+    }
 }

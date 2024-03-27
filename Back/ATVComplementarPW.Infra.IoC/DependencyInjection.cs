@@ -1,4 +1,8 @@
-﻿using ATVComplementarPW.Domain.Interfaces;
+﻿using System.Text.Json.Serialization;
+using ATVComplementarPW.Application.Dtos.Mapping;
+using ATVComplementarPW.Application.Interfaces;
+using ATVComplementarPW.Application.Services;
+using ATVComplementarPW.Domain.Interfaces;
 using ATVComplementarPW.Infra.Data.Context;
 using ATVComplementarPW.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +17,16 @@ public static class DependecyInjection
     {
         service.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+        
+        service.AddControllers().AddJsonOptions(options =>
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-        //service.AddAutoMapper(typeof(MappingProfile));
+        service.AddAutoMapper(typeof(MappingProfile));
 
         service.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        service.AddScoped<ITokenService, TokenService>();
+        service.AddScoped<IUserService, UserService>();
 
         return service;
     }
