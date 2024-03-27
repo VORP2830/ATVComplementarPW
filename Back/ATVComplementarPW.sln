@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATVComplementarPW.Infra.IoC", "ATVComplementarPW.Infra.IoC\ATVComplementarPW.Infra.IoC.csproj", "{DA520377-C92A-4722-8445-FD003CD7EEEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATVComplementarPW.Application", "ATVComplementarPW.Application\ATVComplementarPW.Application.csproj", "{1128AF48-DE05-449D-92E5-C0A05B295652}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATVComplementarPW.Infra.Data", "ATVComplementarPW.Infra.Data\ATVComplementarPW.Infra.Data.csproj", "{7B6DC4F4-85EA-4A78-BB79-F0355A0E5D5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATVComplementarPW.Domain", "ATVComplementarPW.Domain\ATVComplementarPW.Domain.csproj", "{6B38F3CC-185B-4082-911B-D2FB6296E82E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATVComplementarPW.API", "ATVComplementarPW.API\ATVComplementarPW.API.csproj", "{D941144A-DD0E-470A-824B-5435E1E7FE21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA520377-C92A-4722-8445-FD003CD7EEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA520377-C92A-4722-8445-FD003CD7EEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA520377-C92A-4722-8445-FD003CD7EEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA520377-C92A-4722-8445-FD003CD7EEEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1128AF48-DE05-449D-92E5-C0A05B295652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1128AF48-DE05-449D-92E5-C0A05B295652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1128AF48-DE05-449D-92E5-C0A05B295652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1128AF48-DE05-449D-92E5-C0A05B295652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6DC4F4-85EA-4A78-BB79-F0355A0E5D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6DC4F4-85EA-4A78-BB79-F0355A0E5D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6DC4F4-85EA-4A78-BB79-F0355A0E5D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6DC4F4-85EA-4A78-BB79-F0355A0E5D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B38F3CC-185B-4082-911B-D2FB6296E82E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B38F3CC-185B-4082-911B-D2FB6296E82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B38F3CC-185B-4082-911B-D2FB6296E82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B38F3CC-185B-4082-911B-D2FB6296E82E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D941144A-DD0E-470A-824B-5435E1E7FE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D941144A-DD0E-470A-824B-5435E1E7FE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D941144A-DD0E-470A-824B-5435E1E7FE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D941144A-DD0E-470A-824B-5435E1E7FE21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D17CDFD-3384-4603-BA2A-374E6110AC90}
+	EndGlobalSection
+EndGlobal
