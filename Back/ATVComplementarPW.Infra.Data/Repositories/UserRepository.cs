@@ -34,6 +34,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         return await _context.Users
                                 .AsNoTracking()
                                 .Include(u => u.Address)
-                                .FirstOrDefaultAsync(d => d.Id == id);
+                                .FirstOrDefaultAsync(d => d.Active && 
+                                                            d.Id == id);
     }
 }

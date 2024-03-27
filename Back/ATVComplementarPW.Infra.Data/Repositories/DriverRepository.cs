@@ -44,6 +44,7 @@ public class DriverRepository : GenericRepository<Driver>, IDriverRepository
         return await _context.Drivers
                                 .AsNoTracking()
                                 .Include(d => d.Address)
-                                .FirstOrDefaultAsync(d => d.Id == id);
+                                .FirstOrDefaultAsync(d => d.Active && 
+                                                            d.Id == id);
     }
 }

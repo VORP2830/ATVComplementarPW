@@ -41,6 +41,7 @@ public class VehicleRepository : GenericRepository<Vehicle>, IVehicleRepository
     {
         return await _context.Vehicles
                                 .AsNoTracking()
-                                .FirstOrDefaultAsync(d => d.Id == id);
+                                .FirstOrDefaultAsync(v => v.Active && 
+                                                            v.Id == id);
     }
 }

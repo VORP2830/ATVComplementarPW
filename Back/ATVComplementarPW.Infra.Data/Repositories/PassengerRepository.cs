@@ -44,6 +44,7 @@ public class PassengerRepository : GenericRepository<Passenger>, IPassengerRepos
         return await _context.Passengers
                                 .AsNoTracking()
                                 .Include(p => p.Address)
-                                .FirstOrDefaultAsync(p => p.Id == id);
+                                .FirstOrDefaultAsync(p => p.Active &&
+                                                            p.Id == id);
     }
 }

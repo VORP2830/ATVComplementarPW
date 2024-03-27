@@ -33,6 +33,7 @@ public class TransportRepository : GenericRepository<Transport>, ITransportRepos
     {
         return await _context.Transports
                                 .AsNoTracking()
-                                .FirstOrDefaultAsync(t => t.Id == id);
+                                .FirstOrDefaultAsync(t => t.Active && 
+                                                            t.Id == id);
     }
 }

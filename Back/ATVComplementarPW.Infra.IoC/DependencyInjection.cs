@@ -27,6 +27,9 @@ public static class DependecyInjection
 
         service.AddScoped<ITokenService, TokenService>();
         service.AddScoped<IUserService, UserService>();
+        service.AddScoped<IDriverService, DriverService>();
+        service.AddScoped<IPassengerService, PassengerService>();
+        service.AddScoped<IVehicleService, VehicleService>();
 
         return service;
     }

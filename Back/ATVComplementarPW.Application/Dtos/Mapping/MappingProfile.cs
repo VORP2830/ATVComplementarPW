@@ -10,6 +10,7 @@ public class MappingProfile : Profile
         CreateMap<Address, AddressDto>().ReverseMap();
         CreateMap<Driver, DriverDto>().ReverseMap();
         CreateMap<Passenger, PassengerDto>().ReverseMap();
+        CreateMap<Transport, TransportCreateDto>().ReverseMap();
         CreateMap<Transport, TransportDto>().ReverseMap();
         CreateMap<Vehicle, VehicleDto>().ReverseMap();
     }
