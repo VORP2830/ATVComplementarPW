@@ -18,7 +18,7 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    DateOfBirth = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CPF = table.Column<string>(type: "TEXT", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
                     Login = table.Column<string>(type: "TEXT", nullable: true),
@@ -96,9 +96,8 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     VehicleId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DriverId = table.Column<int>(type: "INTEGER", nullable: false),
                     PassengerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DateTransport = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    DateHourTransport = table.Column<DateTime>(type: "TEXT", nullable: false),
                     TransportKm = table.Column<double>(type: "REAL", nullable: false),
                     Active = table.Column<bool>(type: "INTEGER", nullable: false),
                     ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -107,12 +106,6 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transports", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transports_Person_DriverId",
-                        column: x => x.DriverId,
-                        principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Transports_Person_PassengerId",
                         column: x => x.PassengerId,
@@ -132,11 +125,6 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                 table: "Addresses",
                 column: "UserId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transports_DriverId",
-                table: "Transports",
-                column: "DriverId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transports_PassengerId",

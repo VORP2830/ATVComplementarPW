@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="register()" class="container mt-5 pt-5" novalidate>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input [(ngModel)]="model.name" type="text" class="form-control" placeholder="Nome" formControlName="name"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Data de Nascimento</label>
+        <input type="text" [(ngModel)]="model.dateOfBirth" placeholder="01/01/0101" bsDatepicker [bsConfig]="bsConfig" class="form-control" formControlName="dateOfBirth"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input [(ngModel)]="model.cpf" type="text" class="form-control" placeholder="CPF" formControlName="cpf"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="streetAvenue">Rua/Avenida</label>
+        <input [(ngModel)]="model.address.streetAvenue" type="text" class="form-control" placeholder="Rua/Avenida"
+          formControlName="streetAvenue" required>
+      </div>
+
+      <div class="form-group">
+        <label for="district">Bairro</label>
+        <input [(ngModel)]="model.address.district" type="text" class="form-control" placeholder="Bairro"
+          formControlName="district" required>
+      </div>
+
+      <div class="form-group">
+        <label for="zipCode">CEP</label>
+        <input [(ngModel)]="model.address.zipCode" type="text" class="form-control" placeholder="CEP"
+          formControlName="zipCode" required>
+      </div>
+
+      <div class="form-group">
+        <label for="number">Número da residência</label>
+        <input [(ngModel)]="model.address.number" type="text" class="form-control" placeholder="Número da residência "
+          formControlName="number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="complement">Complemento</label>
+        <input [(ngModel)]="model.address.complement" type="text" class="form-control" placeholder="Complemento"
+          formControlName="complement">
+      </div>
+
+      <div class="form-group">
+        <label for="state">Estado</label>
+        <input [(ngModel)]="model.address.state" type="text" class="form-control" placeholder="Estado"
+          formControlName="state" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city">Cidade</label>
+        <input [(ngModel)]="model.address.city" type="text" class="form-control" placeholder="Cidade"
+          formControlName="city" required>
+      </div>
+
+      <div class="form-group">
+        <label for="login">Usuário</label>
+        <input [(ngModel)]="model.login" type="text" class="form-control" placeholder="Usuário" formControlName="login"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input [(ngModel)]="model.password" type="password" class="form-control" placeholder="Senha"
+          formControlName="password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-5 w-100 py-2">Registrar</button>
+    </div>
+  </div>
+</form>

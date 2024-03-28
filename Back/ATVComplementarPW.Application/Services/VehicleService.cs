@@ -29,7 +29,10 @@ public class VehicleService : IVehicleService
     public async Task<VehicleDto> GetById(int id)
     {
         Vehicle vehicle = await _unitOfWork.VehicleRepository.GetById(id);
-        return _mapper.Map<VehicleDto>(vehicle);
+        Driver driver = await _unitOfWork.DriverRepository.GetById(vehicle.DriverId);
+        VehicleDto vehicleDto = _mapper.Map<VehicleDto>(vehicle);
+        vehicleDto.DriverCPF = driver.CPF;
+        return vehicleDto;
     }
 
     public async Task<VehicleDto> Create(VehicleDto model)
@@ -39,7 +42,12 @@ public class VehicleService : IVehicleService
         {
             throw new ATVComplementarPWException("Veiculo já cadastrado");
         }
-        vehicle = _mapper.Map<Vehicle>(model);
+        Driver driver = await _unitOfWork.DriverRepository.GetByCPF(model.DriverCPF);
+        if (driver is null)
+        {
+            throw new ATVComplementarPWException("Motorista não cadastrado");
+        }
+        vehicle = new Vehicle(model.VehicleType, model.Plate, model.Brand, model.Model, model.Year, model.Capacity, driver.Id);
         _unitOfWork.VehicleRepository.Add(vehicle);
         await _unitOfWork.SaveChangesAsync();
         return _mapper.Map<VehicleDto>(vehicle);
@@ -47,8 +55,8 @@ public class VehicleService : IVehicleService
 
     public async Task<VehicleDto> Update(VehicleDto model)
     {
-        Vehicle vehiclePlate = await _unitOfWork.VehicleRepository.GetById(model.Id);
-        if (vehiclePlate is not null)
+        Vehicle vehiclePlate = await _unitOfWork.VehicleRepository.GetByPlate(model.Plate);
+        if (vehiclePlate.Id != model.Id)
         {
             throw new ATVComplementarPWException("Veiculo já cadastrado");
         }
@@ -57,7 +65,12 @@ public class VehicleService : IVehicleService
         {
             throw new ATVComplementarPWException("Veiculo não cadastrado");
         }
-        vehicle = _mapper.Map<Vehicle>(model);
+        Driver driver = await _unitOfWork.DriverRepository.GetByCPF(model.DriverCPF);
+        if (driver is null)
+        {
+            throw new ATVComplementarPWException("Motorista não cadastrado");
+        }
+        vehicle = new Vehicle(model.Id, model.VehicleType, model.Plate, model.Brand, model.Model, model.Year, model.Capacity, driver.Id);
         _unitOfWork.VehicleRepository.Update(vehicle);
         await _unitOfWork.SaveChangesAsync();
         return _mapper.Map<VehicleDto>(vehicle);

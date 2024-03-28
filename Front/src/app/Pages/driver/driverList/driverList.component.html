@@ -1,0 +1,74 @@
+<div class="card rounded shadow-sm p-3">
+
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" routerLink="/veiculos/detalhe">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">
+          Novo
+        </b>
+      </a>
+    </div>
+  </div>
+
+
+  <table class="table tabel-striped table-hover">
+    <thead class="table-dark">
+      <tr class="text-center">
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de nascimento</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let driver of drivers">
+      <tr class="border text-center">
+        <td >{{driver.name}}</td>
+        <td>{{ driver.cpf }}</td>
+        <td>{{driver.dateOfBirth}}</td>
+        <td>
+          <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, driver.id)">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg me-2" tooltip="Editar" (click)="detail(driver.id)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!drivers.length">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h4>Nenhum motorista cadastrado</h4>
+        </td>
+       </tr>
+    </tfoot>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="pagination.totalItems"
+                [(ngModel)]="pagination.currentPage"
+                [itemsPerPage]="pagination.itemsPerPages"
+                (pageChanged)="pageChanged($event)"
+
+                pageBtnClass="btn"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;">
+    </pagination>
+    </div>
+  </div>
+
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Tem certeza que quer deletar esse veiculo?</p>
+      <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+      <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+    </div>
+  </ng-template>

@@ -16,4 +16,49 @@ public class Vehicle : BaseEntity
     {
         Active = true;
     }
+    public Vehicle(string vehicleType, string plate, string brand, string model, string year, int capacity, int driverId)
+    {
+        if(vehicleType == "Car")
+        {
+            VehicleType = VehicleType.Car;
+        }
+        else if(vehicleType == "Bus")
+        {
+            VehicleType = VehicleType.Bus;
+        }
+        else if(vehicleType == "VAN")
+        {
+            VehicleType = VehicleType.VAN;
+        }
+        Plate = plate;
+        Brand = brand;
+        Model = model;
+        Year = year;
+        Capacity = capacity;
+        DriverId = driverId;
+        Active = true;
+    }
+    public Vehicle(int id, string vehicleType, string plate, string brand, string model, string year, int capacity, int driverId)
+    {
+        Id = id;
+        if(vehicleType == "Car")
+        {
+            VehicleType = VehicleType.Car;
+        }
+        else if(vehicleType == "Bus")
+        {
+            VehicleType = VehicleType.Bus;
+        }
+        else if(vehicleType == "VAN")
+        {
+            VehicleType = VehicleType.VAN;
+        }
+        Plate = plate;
+        Brand = brand;
+        Model = model;
+        Year = year;
+        Capacity = capacity;
+        DriverId = driverId;
+        Active = true;
+    }
 }

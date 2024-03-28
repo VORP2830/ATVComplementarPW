@@ -18,6 +18,7 @@ public class VehicleRepository : GenericRepository<Vehicle>, IVehicleRepository
     {
         var query = _context.Vehicles
                                 .AsNoTracking()
+                                .Include(p => p.Driver)
                                 .Where(p => p.Active);
 
         var totalCount = await query.CountAsync();

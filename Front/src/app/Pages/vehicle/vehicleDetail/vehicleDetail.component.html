@@ -1,0 +1,88 @@
+<div class="card rounded shadow-sm">
+  <form [formGroup]="form">
+    <div class="p-3">
+      <div class="row">
+
+        <div class="form-group col-md-6">
+          <label>Tipo de veiculo</label>
+
+          <select class="form-control" [(ngModel)]="vehicle.vehicleType" formControlName="vehicleType"
+                  [ngClass]="{'is-invalid': f.vehicleType.errors && f.vehicleType.touched }">
+            <option value="null" disabled selected>Selecione</option>
+            <option value="Car">Carro</option>
+            <option value="Bus">Onibus</option>
+            <option value="VAN">Van</option>
+          </select>
+          <div *ngIf="f.vehicleType.errors?.required" class="invalid-feedback">
+            O tipo de veiculo é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Placa</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.plate.errors && f.plate.touched }"
+            formControlName="plate" placeholder="Placa" [(ngModel)]="vehicle.plate">
+          <div *ngIf="f.plate.errors?.required" class="invalid-feedback">
+            A placa é obrigatória
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Marca</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.brand.errors && f.brand.touched }"
+            formControlName="brand" placeholder="Marca" [(ngModel)]="vehicle.brand">
+          <div *ngIf="f.brand.errors?.required" class="invalid-feedback">
+            A marca é obrigatória
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Modelo</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.model.errors && f.model.touched }"
+            formControlName="model" placeholder="Modelo" [(ngModel)]="vehicle.model">
+          <div *ngIf="f.model.errors?.required" class="invalid-feedback">
+            O modelo é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Ano de fabricação</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.year.errors && f.year.touched }"
+            formControlName="year" placeholder="Ano de fabricação" [(ngModel)]="vehicle.year">
+          <div *ngIf="f.year.errors?.required" class="invalid-feedback">
+            O ano de fabricação é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Capacidade de passageiros</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.capacity.errors && f.capacity.touched }"
+            formControlName="capacity" placeholder="Capacidade de passageiros" [(ngModel)]="vehicle.capacity">
+          <div *ngIf="f.capacity.errors?.required" class="invalid-feedback">
+            A Capacidade de passageiros é obrigatória
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>CPF do motorista</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.plate.errors && f.plate.touched }"
+            formControlName="driverCPF" placeholder="CPF do motorista" [(ngModel)]="vehicle.driverCPF">
+          <div *ngIf="f.plate.errors?.required" class="invalid-feedback">
+            O CPF do motorista é obrigatório
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button class="btn btn-outline-secondary me-auto border" routerLink="/veiculos/lista">
+          Cancelar Alteração
+        </button>
+        <button class="btn btn-success" [disabled]="!form.valid" (click)="save()">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

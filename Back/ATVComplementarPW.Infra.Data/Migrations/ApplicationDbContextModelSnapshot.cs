@@ -85,7 +85,7 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Discriminator")
@@ -121,11 +121,8 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly>("DateTransport")
+                    b.Property<DateTime>("DateHourTransport")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("DriverId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("TEXT");
@@ -140,8 +137,6 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DriverId");
 
                     b.HasIndex("PassengerId");
 
@@ -239,12 +234,6 @@ namespace ATVComplementarPW.Infra.Data.Migrations
 
             modelBuilder.Entity("ATVComplementarPW.Domain.Entities.Transport", b =>
                 {
-                    b.HasOne("ATVComplementarPW.Domain.Entities.Driver", "Driver")
-                        .WithMany()
-                        .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ATVComplementarPW.Domain.Entities.Passenger", "Passenger")
                         .WithMany()
                         .HasForeignKey("PassengerId")
@@ -256,8 +245,6 @@ namespace ATVComplementarPW.Infra.Data.Migrations
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Driver");
 
                     b.Navigation("Passenger");
 
