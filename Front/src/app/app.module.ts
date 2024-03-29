@@ -1,9 +1,8 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +18,7 @@ import { AppComponent } from './app.component';
 import { UserService } from './Service/user.service';
 import { DriverService } from './Service/driver.service';
 import { VehicleService } from './Service/vehicle.service';
+import { PassengerService } from './Service/passenger.service';
 
 import { JwtInterceptor } from './Interceptors/jwt.interceptor';
 
@@ -35,6 +35,16 @@ import { VehicleListComponent } from './Pages/vehicle/vehicleList/vehicleList.co
 import { DriverComponent } from './Pages/driver/driver.component';
 import { DriverDetailComponent } from './Pages/driver/driverDetail/driverDetail.component';
 import { DriverListComponent } from './Pages/driver/driverList/driverList.component';
+import { PassengerComponent } from './Pages/passenger/passenger.component';
+import { PassengerDetailComponent } from './Pages/passenger/passengerDetail/passengerDetail.component';
+import { PassengerListComponent } from './Pages/passenger/passengerList/passengerList.component';
+import { TransportService } from './Service/transport.service';
+import { TransportComponent } from './Pages/transport/transport.component';
+import { TransportDetailComponent } from './Pages/transport/transportDetail/transportDetail.component';
+import { TransportListComponent } from './Pages/transport/transportList/transportList.component';
+import { DateHourFormat } from './Helpers/DateHourFormat.pipe';
+import { ReportsComponent } from './Pages/reports/reports.component';
+import { ReportService } from './Service/report.service';
 
 
 
@@ -43,6 +53,7 @@ import { DriverListComponent } from './Pages/driver/driverList/driverList.compon
     AppComponent,
     TitleComponent,
     DateFormat,
+    DateHourFormat,
     NavComponent,
     UserComponent,
     LoginComponent,
@@ -53,7 +64,15 @@ import { DriverListComponent } from './Pages/driver/driverList/driverList.compon
     VehicleListComponent,
     DriverComponent,
     DriverDetailComponent,
-    DriverListComponent
+    DriverListComponent,
+    PassengerComponent,
+    PassengerDetailComponent,
+    PassengerListComponent,
+    TransportComponent,
+    TransportDetailComponent,
+    TransportListComponent,
+    ReportsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -79,6 +98,9 @@ import { DriverListComponent } from './Pages/driver/driverList/driverList.compon
     UserService,
     VehicleService,
     DriverService,
+    PassengerService,
+    TransportService,
+    ReportService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

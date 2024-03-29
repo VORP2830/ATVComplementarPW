@@ -1,0 +1,48 @@
+<div class="card rounded shadow-sm">
+  <form [formGroup]="form">
+    <div class="p-3">
+      <div class="row">
+
+        <div class="form-group col-md-6">
+          <label>Placa do veiculo</label>
+          <input type="text" class="form-control" formControlName="vehiclePlate" placeholder="Placa do veiculo">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="dateHourTransport">Data do transporte</label>
+          <input type="text" placeholder="01/01/0101 00:00" bsDatepicker [bsConfig]="bsConfig" class="form-control"
+            formControlName="dateHourTransport" required>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>CPF do passageiro</label>
+          <input type="text" class="form-control" formControlName="passengerCpf" placeholder="CPF do passageiro">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>KM percorrido</label>
+          <input type="text" class="form-control" formControlName="transportKm" placeholder="KM percorrido">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Preço</label>
+          <input type="text" class="form-control" placeholder="Preço do transporte" [value]="'R$ ' + price.toFixed(2)" readonly>
+      </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="card rounded shadow-sm mt-4">
+  <div class="card-footer">
+    <div class="d-flex">
+      <button class="btn btn-outline-secondary me-auto border" routerLink="/veiculos/lista">
+        Cancelar Alteração
+      </button>
+      <button class="btn btn-success" [disabled]="!form.valid" (click)="save()">
+        Salvar
+      </button>
+    </div>
+  </div>
+</div>

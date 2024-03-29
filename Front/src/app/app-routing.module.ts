@@ -14,6 +14,13 @@ import { VehicleListComponent } from './Pages/vehicle/vehicleList/vehicleList.co
 import { DriverComponent } from './Pages/driver/driver.component';
 import { DriverDetailComponent } from './Pages/driver/driverDetail/driverDetail.component';
 import { DriverListComponent } from './Pages/driver/driverList/driverList.component';
+import { PassengerComponent } from './Pages/passenger/passenger.component';
+import { PassengerDetailComponent } from './Pages/passenger/passengerDetail/passengerDetail.component';
+import { PassengerListComponent } from './Pages/passenger/passengerList/passengerList.component';
+import { TransportComponent } from './Pages/transport/transport.component';
+import { TransportDetailComponent } from './Pages/transport/transportDetail/transportDetail.component';
+import { TransportListComponent } from './Pages/transport/transportList/transportList.component';
+import { ReportsComponent } from './Pages/reports/reports.component';
 
 const routes: Routes = [
   {
@@ -39,6 +46,28 @@ const routes: Routes = [
           { path: 'detalhe/:id', component: DriverDetailComponent },
           { path: 'lista', component: DriverListComponent },
         ]
+      },
+      {
+        path: 'passageiros',
+        component: PassengerComponent,
+        children: [
+          { path: 'detalhe', component: PassengerDetailComponent },
+          { path: 'detalhe/:id', component: PassengerDetailComponent },
+          { path: 'lista', component: PassengerListComponent },
+        ]
+      },
+      {
+        path: 'transportes',
+        component: TransportComponent,
+        children: [
+          { path: 'detalhe', component: TransportDetailComponent },
+          { path: 'detalhe/:id', component: TransportDetailComponent },
+          { path: 'lista', component: TransportListComponent },
+        ]
+      },
+      {
+        path: 'relatorios',
+        component: ReportsComponent
       },
      ]
   },

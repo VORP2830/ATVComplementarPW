@@ -1,8 +1,8 @@
 using ATVComplementarPW.Domain.Entities;
 
-namespace ATVComplementarPW.Domain.Interfaces;
+namespace ATVComplementarPW.Application.Interfaces;
 
-public interface IReportsRepository
+public interface IReportService
 {
     Task<TransportReport> GenerateTransportReport(DateTime startDate, DateTime endDate);
 }

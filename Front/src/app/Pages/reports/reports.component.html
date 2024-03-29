@@ -1,0 +1,56 @@
+<app-title
+  [titulo]="'Relatórios'"
+  [iconClass]="'fa-solid fa-chart-line'"
+  [botaoListar]="false"
+></app-title>
+
+<div class="card rounded shadow-sm p-3">
+
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Data início: </div>
+        </div>
+        <input type="text" class="form-control me-1"
+        bsDatepicker [bsConfig]="bsConfig" placeholder="" [(ngModel)]="firstDayOfMonth" >
+        <div class="input-group-prepend">
+          <div class="input-group-text">Data fim: </div>
+        </div>
+        <input type="text" class="form-control me-1"
+        bsDatepicker [bsConfig]="bsConfig" placeholder="" [(ngModel)]="lastDayOfMonth" >
+        <div class="input-group-append me-1">
+          <button class="btn btn-primary" (click)="getReport()">Filtrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <table class="table tabel-striped table-hover">
+    <thead class="table-dark">
+      <tr class="text-center">
+        <th>Tipo de Transporte</th>
+        <th>Quantidade</th>
+        <th>Receita</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border text-center">
+        <td>Carro</td>
+        <td>{{ report.carCount }}</td>
+        <td>R${{ report.carRevenue }}</td>
+      </tr>
+      <tr class="border text-center">
+        <td>Ônibus</td>
+        <td>{{ report.busCount }}</td>
+        <td>R${{ report.busRevenue }}</td>
+      </tr>
+      <tr class="border text-center">
+        <td>Van</td>
+        <td>{{ report.vanCount }}</td>
+        <td>R${{ report.vanRevenue }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -7,7 +7,7 @@
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary" routerLink="/veiculos/detalhe">
+      <a class="d-flex btn btn-outline-primary" routerLink="/motoristas/detalhe">
         <i class="fa fa-plus-circle my-1"></i>
         <b class="ml-1 d-none d-sm-block">
           Novo
@@ -30,7 +30,7 @@
       <tr class="border text-center">
         <td >{{driver.name}}</td>
         <td>{{ driver.cpf }}</td>
-        <td>{{driver.dateOfBirth}}</td>
+        <td>{{driver.dateOfBirth | DateFormat}}</td>
         <td>
           <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, driver.id)">
             <i class="fa fa-trash"></i>

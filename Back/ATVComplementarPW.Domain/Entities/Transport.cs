@@ -8,10 +8,20 @@ public class Transport : BaseEntity
     public Passenger Passenger { get; set; }
     public DateTime DateHourTransport { get; set; }
     public double TransportKm { get; set; }
-    protected double Price { get; set; }
+    public double Price { get; protected set; }
     protected Transport()
     {
         Price = 0.4 * TransportKm;
         Active = true;
     }
+    public Transport(int vehicleId, int passengerId, DateTime dateHourTransport, double transportKm)
+    {
+        VehicleId = vehicleId;
+        PassengerId = passengerId;
+        DateHourTransport = dateHourTransport;
+        TransportKm = transportKm;
+        Price = transportKm * 0.4;
+        Active = true;
+    }
 }
+

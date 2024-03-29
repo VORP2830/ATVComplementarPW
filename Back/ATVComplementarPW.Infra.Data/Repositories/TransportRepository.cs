@@ -18,6 +18,8 @@ public class TransportRepository : GenericRepository<Transport>, ITransportRepos
     {
         var query = _context.Transports
                                 .AsNoTracking()
+                                .Include(t => t.Passenger)
+                                .Include(t => t.Vehicle)
                                 .Where(p => p.Active);
 
         var totalCount = await query.CountAsync();

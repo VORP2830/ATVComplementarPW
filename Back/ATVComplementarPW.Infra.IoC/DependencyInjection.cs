@@ -30,6 +30,8 @@ public static class DependecyInjection
         service.AddScoped<IDriverService, DriverService>();
         service.AddScoped<IPassengerService, PassengerService>();
         service.AddScoped<IVehicleService, VehicleService>();
+        service.AddScoped<ITransportService, TransportService>();
+        service.AddScoped<IReportService, ReportService>();
 
         return service;
     }

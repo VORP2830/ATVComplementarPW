@@ -4,17 +4,17 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Pagination } from 'src/app/Models/Pagination';
-import { Vehicle } from 'src/app/Models/vehicle';
-import { VehicleService } from 'src/app/Service/vehicle.service';
+import { Transport } from 'src/app/Models/transport';
+import { TransportService } from 'src/app/Service/transport.service';
 
 @Component({
-  selector: 'app-vehicleList',
-  templateUrl: './vehicleList.component.html'
+  selector: 'app-transportList',
+  templateUrl: './transportList.component.html'
 })
-export class VehicleListComponent implements OnInit {
-  public vehicles: Vehicle[] = [];
+export class TransportListComponent implements OnInit {
+  public transports: Transport[] = [];
   modalRef?: BsModalRef;
-  vehicletId: number = 0;
+  transportId: number = 0;
   public pagination: Pagination = new Pagination();
 
   constructor(
@@ -22,20 +22,19 @@ export class VehicleListComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private spinner: NgxSpinnerService,
-    private vehicleSerivce: VehicleService
+    private transportSerivce: TransportService
   ) { }
 
   ngOnInit() {
-    this.getVehicles();
+    this.getTransports();
   }
 
-  public getVehicles() {
+  public getTransports() {
     this.spinner.show();
-    this.vehicleSerivce.getVehicles(this.pagination.currentPage, this.pagination.itemsPerPages)
+    this.transportSerivce.getTransports(this.pagination.currentPage, this.pagination.itemsPerPages)
       .subscribe({
         next: (result: any) => {
-          this.vehicles = result.result;
-          console.log(result.pagination)
+          this.transports = result.result;
           this.pagination = result.pagination;
         },
         error: (error: any) => {
@@ -44,10 +43,10 @@ export class VehicleListComponent implements OnInit {
       }).add(() => this.spinner.hide());
   }
 
-  openModal(event: any, template: TemplateRef<any>, vehicletId: number): void {
+  openModal(event: any, template: TemplateRef<any>, transportId: number): void {
     event.stopPropagation();
-    this.vehicletId = vehicletId;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.transportId = transportId;
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   decline(): void {
@@ -57,10 +56,10 @@ export class VehicleListComponent implements OnInit {
   confirm() {
     this.spinner.show();
     this.modalRef?.hide();
-    this.vehicleSerivce.delete(this.vehicletId).subscribe({
+    this.transportSerivce.delete(this.transportId).subscribe({
       next: (result: any) => {
-          this.toastr.success("Excluido com sucesso!", "Deletado");
-          this.getVehicles();
+        this.toastr.success("Excluido com sucesso!", "Deletado");
+        this.getTransports();
       },
       error: (error: any) => {
         this.toastr.error(error.error.message, 'Erro');
@@ -69,25 +68,12 @@ export class VehicleListComponent implements OnInit {
   }
 
   public detail(id: number): void {
-    this.router.navigate([`/veiculos/detalhe/${id}`]);
+    this.router.navigate([`/transportes/detalhe/${id}`]);
   }
 
   public pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    this.getVehicles()
+    this.getTransports()
   }
-
-  public correctWord(word: string): string {
-    switch (word.toLowerCase()) {
-        case 'car':
-            return 'Carro';
-        case 'bus':
-            return 'Onibus';
-        case 'van':
-            return 'Van';
-        default:
-            return word;
-    }
-}
 
 }

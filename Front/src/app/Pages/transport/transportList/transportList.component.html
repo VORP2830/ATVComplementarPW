@@ -7,7 +7,7 @@
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary" routerLink="/veiculos/detalhe">
+      <a class="d-flex btn btn-outline-primary" routerLink="/transportes/detalhe">
         <i class="fa fa-plus-circle my-1"></i>
         <b class="ml-1 d-none d-sm-block">
           Novo
@@ -20,39 +20,35 @@
   <table class="table tabel-striped table-hover">
     <thead class="table-dark">
       <tr class="text-center">
-        <th>Tipo de veiculo</th>
-        <th class="d-none d-md-table-cell">Placa</th>
-        <th class="d-none d-md-table-cell">Marca</th>
-        <th class="d-none d-md-table-cell">Modelo</th>
-        <th class="d-none d-md-table-cell">Ano</th>
-        <th >Capacidade</th>
-        <th  class="d-none d-md-table-cell">Motorista</th>
+        <th>Dados do veiculo</th>
+        <th>Passageiro</th>
+        <th>Data do transporte</th>
+        <th>Kilometragem</th>
+        <th>Preço</th>
         <th>Opções</th>
       </tr>
     </thead>
-    <tbody *ngFor="let vehicle of vehicles">
+    <tbody *ngFor="let transport of transports">
       <tr class="border text-center">
-        <td >{{correctWord(vehicle.vehicleType)}}</td>
-        <td class="border d-none d-md-table-cell">{{ vehicle.plate }}</td>
-        <td class="border d-none d-md-table-cell">{{vehicle.brand}}</td>
-        <td class="border d-none d-md-table-cell">{{vehicle.model}}</td>
-        <td class="border d-none d-md-table-cell">{{vehicle.year}}</td>
-        <td >{{vehicle.capacity}}</td>
-        <td class="border d-none d-md-table-cell">{{vehicle.driver?.name}}</td>
+        <td >Placa: {{transport.vehiclePlate}} <br> Marca: {{transport.vehicle?.brand}} <br> Modelo: {{transport.vehicle?.model}}</td>
+        <td>{{ transport.passenger?.name }}</td>
+        <td>{{transport.dateHourTransport | DateHourFormat }}</td>
+        <td>{{ transport.transportKm }}</td>
+        <td>R${{ transport.transportKm * 0.4 }}</td>
         <td>
-          <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, vehicle.id)">
+          <button type="button" class="btn btn-danger btn-lg me-2" tooltip="Excluir" (click)="openModal($event, template, transport.id)">
             <i class="fa fa-trash"></i>
           </button>
-          <button type="button" class="btn btn-primary btn-lg me-2" tooltip="Editar" (click)="detail(vehicle.id)">
+          <button type="button" class="btn btn-primary btn-lg me-2" tooltip="Editar" (click)="detail(transport.id)">
             <i class="fas fa-edit"></i>
           </button>
         </td>
       </tr>
     </tbody>
-    <tfoot *ngIf="!vehicles.length">
+    <tfoot *ngIf="!transports.length">
       <tr>
         <td colspan="8" class="text-center">
-          <h4>Nenhum veiculo cadastrado</h4>
+          <h4>Nenhum passageiros cadastrado</h4>
         </td>
        </tr>
     </tfoot>
