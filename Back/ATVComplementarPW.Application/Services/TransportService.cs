@@ -71,7 +71,7 @@ public class TransportService : ITransportService
         {
             throw new ATVComplementarPWException("Veiculo não cadastrado");
         }
-        transport = _mapper.Map<Transport>(model);
+        transport = new Transport(model.Id, vehicle.Id, passenger.Id, DateTime.Parse(model.DateHourTransport), model.TransportKm);
         _unitOfWork.TransportRepository.Update(transport);
         await _unitOfWork.SaveChangesAsync();
         return _mapper.Map<TransportDto>(transport);

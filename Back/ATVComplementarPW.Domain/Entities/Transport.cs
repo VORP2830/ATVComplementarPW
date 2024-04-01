@@ -23,5 +23,15 @@ public class Transport : BaseEntity
         Price = transportKm * 0.4;
         Active = true;
     }
+    public Transport(int id, int vehicleId, int passengerId, DateTime dateHourTransport, double transportKm)
+    {
+        Id = id;
+        VehicleId = vehicleId;
+        PassengerId = passengerId;
+        DateHourTransport = dateHourTransport;
+        TransportKm = transportKm;
+        Price = transportKm * 0.4;
+        Active = true;
+    }
 }
 
