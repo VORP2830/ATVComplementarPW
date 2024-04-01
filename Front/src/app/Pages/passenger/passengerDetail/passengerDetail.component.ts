@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Passenger } from 'src/app/Models/passenger';
@@ -22,7 +22,8 @@ export class PassengerDetailComponent implements OnInit {
     private passengerService: PassengerService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -53,6 +54,7 @@ export class PassengerDetailComponent implements OnInit {
 
   createAddressForm() {
     this.addressForm = this.fb.group({
+      id: [],
       streetAvenue: ['', Validators.required],
       district: ['', Validators.required],
       zipCode: ['', Validators.required],
@@ -88,6 +90,7 @@ export class PassengerDetailComponent implements OnInit {
     });
 
     this.addressForm.patchValue({
+      id: this.passenger.address.id,
       streetAvenue: this.passenger.address.streetAvenue,
       district: this.passenger.address.district,
       zipCode: this.passenger.address.zipCode,
@@ -110,6 +113,7 @@ export class PassengerDetailComponent implements OnInit {
         this.passengerService.post(passenger).subscribe({
           next: (result: any) => {
             this.toastr.success('Passageiro salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/passageiros/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');
@@ -120,7 +124,8 @@ export class PassengerDetailComponent implements OnInit {
 
         this.passengerService.put(passenger).subscribe({
           next: () => {
-            this.toastr.success('Passageiro salvo com sucesso', "Sucesso")
+            this.toastr.success('Passageiro salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/passageiros/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');

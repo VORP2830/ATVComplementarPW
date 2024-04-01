@@ -49,7 +49,7 @@ public class DriverService : IDriverService
     public async Task<DriverDto> Update(DriverDto model)
     {
         Driver driverCpf = await _unitOfWork.DriverRepository.GetByCPF(model.CPF);
-        if(driverCpf is not null)
+        if(driverCpf.Id != model.Id)
         {
             throw new ATVComplementarPWException("CPF já cadastrado");
         }

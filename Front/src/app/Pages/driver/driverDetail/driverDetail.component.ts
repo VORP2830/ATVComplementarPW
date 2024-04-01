@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Driver } from 'src/app/Models/driver';
@@ -22,7 +22,8 @@ export class DriverDetailComponent implements OnInit {
     private driverService: DriverService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -51,6 +52,7 @@ export class DriverDetailComponent implements OnInit {
 
   createAddressForm() {
     this.addressForm = this.fb.group({
+      id: [],
       streetAvenue: ['', Validators.required],
       district: ['', Validators.required],
       zipCode: ['', Validators.required],
@@ -86,6 +88,7 @@ export class DriverDetailComponent implements OnInit {
     });
 
     this.addressForm.patchValue({
+      id: this.driver.address.id,
       streetAvenue: this.driver.address.streetAvenue,
       district: this.driver.address.district,
       zipCode: this.driver.address.zipCode,
@@ -108,6 +111,7 @@ export class DriverDetailComponent implements OnInit {
         this.driverService.post(driver).subscribe({
           next: (result: any) => {
             this.toastr.success('Motorista salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/motoristas/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');
@@ -118,7 +122,8 @@ export class DriverDetailComponent implements OnInit {
 
         this.driverService.put(driver).subscribe({
           next: () => {
-            this.toastr.success('Motorista salvo com sucesso', "Sucesso")
+            this.toastr.success('Motorista salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/motoristas/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');

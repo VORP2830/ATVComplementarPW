@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Vehicle } from 'src/app/Models/vehicle';
@@ -22,7 +22,8 @@ export class VehicleDetailComponent implements OnInit {
     private vehicleService: VehicleService,
     private toastr: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,6 +57,7 @@ export class VehicleDetailComponent implements OnInit {
         this.vehicleService.post(this.vehicle).subscribe({
           next: (result: any) => {
             this.toastr.success('Veiculo salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/veiculos/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');
@@ -65,7 +67,8 @@ export class VehicleDetailComponent implements OnInit {
         this.vehicle = { id: this.vehicle.id, ... this.form.value }
         this.vehicleService.put(this.vehicle).subscribe({
           next: () => {
-            this.toastr.success('Veiculo salvo com sucesso', "Sucesso")
+            this.toastr.success('Veiculo salvo com sucesso', "Sucesso");
+            this.router.navigateByUrl('/veiculos/lista');
           },
           error: (error: any) => {
             this.toastr.error(error.error.Message, 'Erro');

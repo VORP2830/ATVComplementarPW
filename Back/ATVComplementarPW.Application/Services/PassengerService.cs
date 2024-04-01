@@ -49,7 +49,7 @@ public class PassengerService : IPassengerService
     public async Task<PassengerDto> Update(PassengerDto model)
     {
         Passenger passengerCpf = await _unitOfWork.PassengerRepository.GetByCPF(model.CPF);
-        if (passengerCpf is not null)
+        if (passengerCpf.Id != model.Id)
         {
             throw new ATVComplementarPWException("CPF já cadastrado");
         }
