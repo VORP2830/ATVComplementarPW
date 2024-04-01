@@ -28,6 +28,7 @@ export class TransportDetailComponent implements OnInit {
   ngOnInit() {
     this.createTransportForm();
     this.getTransport();
+    this.subscribeToTransportKmChanges();
   }
 
   get bsConfig(): any {
@@ -48,6 +49,12 @@ export class TransportDetailComponent implements OnInit {
       transportKm: ['' , Validators.required],
       vehiclePlate: ['', Validators.required],
       dateHourTransport: ['', Validators.required]
+    });
+  }
+
+  public subscribeToTransportKmChanges() {
+    this.form.get('transportKm')!.valueChanges.subscribe(value => {
+      this.calculatePrice(value);
     });
   }
 

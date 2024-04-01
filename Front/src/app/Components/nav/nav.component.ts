@@ -51,11 +51,11 @@ export class NavComponent implements OnInit {
 
   navigateToPage(): void {
     const currentUrl = this.router.url;
-    if(currentUrl == '/dashboard'){
+    if(currentUrl == '/home'){
       location.reload()
     }
     else{
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/home'])
     }
   }
 

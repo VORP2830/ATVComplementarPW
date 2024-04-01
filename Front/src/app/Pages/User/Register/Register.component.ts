@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { User } from 'src/app/Models/User';
 
 @Component({
   selector: 'app-Register',
@@ -11,24 +12,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./Register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  model = {
-    name: null,
-    dateOfBirth: null,
-    cpf: null,
-    login: null,
-    password: null,
-    address: {
-      streetAvenue: null,
-      district: null,
-      zipCode: null,
-      number: null,
-      complement: null,
-      state: null,
-      city: null,
-    }
-  };
-
-  form!: FormGroup;
+  userForm!: FormGroup;
+  addressForm!: FormGroup;
+  user!: User;
 
   constructor(
     public userService: UserService,
@@ -39,7 +25,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.validation();
+    this.initializeForms();
   }
 
   get bsConfig(): any {
@@ -52,37 +38,47 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  get f() {
-    return this.form.controls;
+  get uf() {
+    return this.userForm.controls;
   }
 
-  public register() {
-    console.log(this.model);
-    this.spinner.show();
-    this.userService.register(this.model).subscribe(
-      () => this.router.navigateByUrl('/home'),
-      (error: any) => {
-        this.toastr.error(error.error.message);
-      }
-    ).add(() => this.spinner.hide());
+  get af() {
+    return this.addressForm.controls;
   }
 
-  public validation(): void {
-    this.form = this.fb.group({
-      name: [null, Validators.required],
-      dateOfBirth: [null, Validators.required],
-      cpf: [null, Validators.required],
-      login: [null, Validators.required],
-      password: [null, Validators.required],
-      address: this.fb.group({
-        streetAvenue: [null, Validators.required],
-        district: [null, Validators.required],
-        zipCode: [null, Validators.required],
-        number: [null, Validators.required],
-        complement: [null],
-        state: [null, Validators.required],
-        city: [null, Validators.required]
-      })
+  initializeForms() {
+    this.userForm = this.fb.group({
+      name: ['', Validators.required],
+      cpf: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      login: ['', Validators.required],
+      password: ['', Validators.required]
     });
+
+    this.addressForm = this.fb.group({
+      streetAvenue: ['', Validators.required],
+      district: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      number: [''],
+      complement: [''],
+      state: ['', Validators.required],
+      city: ['', Validators.required]
+    });
+  }
+
+
+  public save(): void {
+    this.spinner.show();
+    const updatedUser = { ...this.user, ...this.userForm.value };
+    updatedUser.address = this.addressForm.value;
+
+    this.userService.register(updatedUser).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/home')
+      },
+      error: (error: any) => {
+        this.toastr.error(error.error.message, 'Erro');
+      }
+    }).add(() => this.spinner.hide());
   }
 }

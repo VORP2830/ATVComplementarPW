@@ -16,6 +16,11 @@
         </div>
 
         <div class="form-group col-md-6">
+          <label>Data de nascimento</label>
+          <input type="text" class="form-control" bsDatepicker [bsConfig]="bsConfig" formControlName="dateOfBirth" placeholder="01/01/0001">
+        </div>
+
+        <div class="form-group col-md-6">
           <label>Login</label>
           <input type="text" class="form-control" formControlName="login" placeholder="Login" [readonly]="true"
             style="background-color: #f2f2f2; cursor: not-allowed;">

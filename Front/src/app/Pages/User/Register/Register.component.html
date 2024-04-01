@@ -1,79 +1,91 @@
-<form [formGroup]="form" (ngSubmit)="register()" class="container mt-5 pt-5" novalidate>
-  <div class="row justify-content-center align-items-center">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input [(ngModel)]="model.name" type="text" class="form-control" placeholder="Nome" formControlName="name"
-          required>
-      </div>
+<app-title [titulo]="'Registro de Usúario'" [botaoListar]="false"></app-title>
 
-      <div class="form-group">
-        <label for="dateOfBirth">Data de Nascimento</label>
-        <input type="text" [(ngModel)]="model.dateOfBirth" placeholder="01/01/0101" bsDatepicker [bsConfig]="bsConfig" class="form-control" formControlName="dateOfBirth"
-          required>
-      </div>
+<div class="card rounded shadow-sm">
+  <form [formGroup]="userForm">
+    <div class="p-3">
+      <div class="row">
 
-      <div class="form-group">
-        <label for="cpf">CPF</label>
-        <input [(ngModel)]="model.cpf" type="text" class="form-control" placeholder="CPF" formControlName="cpf"
-          required>
-      </div>
+        <div class="form-group col-md-6">
+          <label>Nome</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+        </div>
 
-      <div class="form-group">
-        <label for="streetAvenue">Rua/Avenida</label>
-        <input [(ngModel)]="model.address.streetAvenue" type="text" class="form-control" placeholder="Rua/Avenida"
-          formControlName="streetAvenue" required>
-      </div>
+        <div class="form-group col-md-6">
+          <label>CPF</label>
+          <input type="text" class="form-control" formControlName="cpf" placeholder="CPF">
+        </div>
 
-      <div class="form-group">
-        <label for="district">Bairro</label>
-        <input [(ngModel)]="model.address.district" type="text" class="form-control" placeholder="Bairro"
-          formControlName="district" required>
-      </div>
+        <div class="form-group col-md-6">
+          <label>Data de nascimento</label>
+          <input type="text" class="form-control" bsDatepicker [bsConfig]="bsConfig" formControlName="dateOfBirth" placeholder="01/01/0001">
+        </div>
 
-      <div class="form-group">
-        <label for="zipCode">CEP</label>
-        <input [(ngModel)]="model.address.zipCode" type="text" class="form-control" placeholder="CEP"
-          formControlName="zipCode" required>
-      </div>
+        <div class="form-group col-md-6">
+          <label>Login</label>
+          <input type="text" class="form-control" formControlName="login" placeholder="Login">
+        </div>
 
-      <div class="form-group">
-        <label for="number">Número da residência</label>
-        <input [(ngModel)]="model.address.number" type="text" class="form-control" placeholder="Número da residência "
-          formControlName="number" required>
-      </div>
+        <div class="form-group col-md-6">
+          <label>Senha</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+        </div>
 
-      <div class="form-group">
-        <label for="complement">Complemento</label>
-        <input [(ngModel)]="model.address.complement" type="text" class="form-control" placeholder="Complemento"
-          formControlName="complement">
       </div>
-
-      <div class="form-group">
-        <label for="state">Estado</label>
-        <input [(ngModel)]="model.address.state" type="text" class="form-control" placeholder="Estado"
-          formControlName="state" required>
-      </div>
-
-      <div class="form-group">
-        <label for="city">Cidade</label>
-        <input [(ngModel)]="model.address.city" type="text" class="form-control" placeholder="Cidade"
-          formControlName="city" required>
-      </div>
-
-      <div class="form-group">
-        <label for="login">Usuário</label>
-        <input [(ngModel)]="model.login" type="text" class="form-control" placeholder="Usuário" formControlName="login"
-          required>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input [(ngModel)]="model.password" type="password" class="form-control" placeholder="Senha"
-          formControlName="password" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary mt-5 w-100 py-2">Registrar</button>
     </div>
-  </div>
-</form>
+  </form>
+</div>
+
+<div class="card rounded shadow-sm mt-4">
+  <form [formGroup]="addressForm">
+    <div class="p-3">
+      <div class="row">
+
+        <div class="form-group col-md-6">
+          <label>Rua/Avenida</label>
+          <input type="text" class="form-control" formControlName="streetAvenue" placeholder="Rua/Avenida">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Bairro</label>
+          <input type="text" class="form-control" formControlName="district" placeholder="Bairro">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>CEP</label>
+          <input type="text" class="form-control" formControlName="zipCode" placeholder="CEP">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Número</label>
+          <input type="text" class="form-control" formControlName="number" placeholder="Número">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Complemento</label>
+          <input type="text" class="form-control" formControlName="complement" placeholder="Complemento">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Estado</label>
+          <input type="text" class="form-control" formControlName="state" placeholder="Estado">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Cidade</label>
+          <input type="text" class="form-control" formControlName="city" placeholder="Cidade">
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button class="btn btn-outline-secondary me-auto border" routerLink="/home">
+          Cancelar Alteração
+        </button>
+        <button class="btn btn-success" (click)="save()">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

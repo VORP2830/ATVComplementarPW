@@ -31,10 +31,12 @@ export class ProfileComponent implements OnInit {
       name: ['', Validators.required],
       cpf: ['', Validators.required],
       login: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
       password: ['', [Validators.minLength(6), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)]]
     });
 
     this.addressForm = this.fb.group({
+      id: [],
       streetAvenue: ['', Validators.required],
       district: ['', Validators.required],
       zipCode: ['', Validators.required],
@@ -43,6 +45,16 @@ export class ProfileComponent implements OnInit {
       state: ['', Validators.required],
       city: ['', Validators.required]
     });
+  }
+
+  get bsConfig(): any {
+    return {
+      isAnimated: true,
+      adaptivePosition: true,
+      dateInputFormat: 'DD/MM/YYYY',
+      containerClass: 'theme-default',
+      showWeekNumbers: false
+    };
   }
 
   getUser(): void {
@@ -63,12 +75,14 @@ export class ProfileComponent implements OnInit {
       name: user.name,
       cpf: user.cpf,
       login: user.login,
+      dateOfBirth: user.dateOfBirth,
       password: user.password
     });
   }
 
   populateAddressForm(address: any): void {
     this.addressForm.patchValue({
+      id: address.id,
       streetAvenue: address.streetAvenue,
       district: address.district,
       zipCode: address.zipCode,
@@ -89,6 +103,7 @@ export class ProfileComponent implements OnInit {
 
   save(): void {
     this.spinner.show();
+    console.log(this.addressForm)
     const updatedUser = { ...this.user, ...this.userForm.value };
     updatedUser.address = this.addressForm.value;
 
