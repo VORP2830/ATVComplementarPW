@@ -8,4 +8,4 @@ FROM nginx:alpine
 COPY --from=node /app/dist/front /usr/share/nginx/html
 ENV LANG pt_BR.UTF-8
 
-EXPOSE 150
+EXPOSE 80

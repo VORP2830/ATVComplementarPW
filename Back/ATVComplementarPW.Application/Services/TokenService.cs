@@ -23,7 +23,7 @@ public class TokenService : ITokenService
                 new Claim("UserId", userId.ToString()),
                 new Claim("UserName", login)
             };
-        var creds = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"])), SecurityAlgorithms.HmacSha512Signature);
+        var creds = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET") ?? _config["Jwt:SecretKey"])), SecurityAlgorithms.HmacSha512Signature);
         var tokenDescription = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),

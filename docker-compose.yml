@@ -9,6 +9,8 @@ services:
       POSTGRES_PASSWORD: senha
     ports:
       - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
   backend:
     build:
@@ -31,4 +33,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "150:150"
+      - "150:80"
+
+volumes:
+  db-data:

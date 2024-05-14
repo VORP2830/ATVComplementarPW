@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environments.development';
+import { environment } from 'src/environments/environments';
 import { PaginationResult } from '../Models/Pagination';
 import { map, Observable, take } from 'rxjs';
 import { Vehicle } from '../Models/vehicle';
