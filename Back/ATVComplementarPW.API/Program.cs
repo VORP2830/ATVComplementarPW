@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddInfrastructureJWT(builder.Configuration);
 builder.Services.AddInfrastructureSwagger();
+//Roda as migrations automaticamente ao rodar o projeto
+builder.Services.AddMigrations();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

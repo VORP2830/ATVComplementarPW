@@ -66,6 +66,6 @@ Se deseja uma opção mais simples, você pode utilizar o Docker Compose para co
    docker-compose up --build
    ```
 
-5. Após a construção e inicialização bem-sucedidas, você poderá acessar o frontend em `http://localhost:4200` e o backend em `http://localhost:5204`.
+5. Após a construção e inicialização bem-sucedidas, você poderá acessar o frontend em `http://localhost:150` e o backend em `http://localhost:120`.
 
 Utilizando o Docker Compose, você pode simplificar o processo de configuração e execução do projeto.
