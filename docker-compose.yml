@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    container_name: Database
+    environment:
+      POSTGRES_DB: ATVComplementarPW
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./Back 
+      dockerfile: Dockerfile
+    container_name: ATVComplementarPW.API
+    depends_on:
+      - db
+    ports:
+      - "120:120"
+    environment:
+      DATABASE: Host=db;Database=ATVComplementarPW;Username=postgres;Password=senha
+      SECRET: eyJpZCI6IjEiLCJzdWIiOiIxMjM0NTU0MzIxIiwibmFtZSI6Ik5hbWUgTmFtZSBOYW1lIiwiaWF0IjoxNjE1MTYxNTE2MX0
+  
+  frontend:
+    build:
+      context: ./Front 
+      dockerfile: Dockerfile
+    container_name: ATVComplementarPW
+    depends_on:
+      - backend
+    ports:
+      - "150:150"
